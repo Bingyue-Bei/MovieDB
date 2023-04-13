@@ -1,13 +1,13 @@
 //import { FETCH_MOVIES } from "./constant"
-import {BLOCK_MOVIE, RECEIVE_MOVIES, UNBLOCK_MOVIE} from "./Actions"
+import { BLOCK_MOVIE, RECEIVE_MOVIES, UNBLOCK_MOVIE } from "./Actions"
 const initialState = {
-  movies: [],
-  likedMovies: [],
-  blockMovies: [],
+    movies: [],
+    likedMovies: [],
+    blockMovies: [],
 };
 
-const Reducer = (state=initialState, action)=>{
-    switch(action.type) {
+const Reducer = (state = initialState, action) => {
+    switch (action.type) {
         case RECEIVE_MOVIES:
             return {
                 ...state,
@@ -18,17 +18,18 @@ const Reducer = (state=initialState, action)=>{
         case 'likedList/dislike':
             return state
         case BLOCK_MOVIE:
-            console.log(state.blockMovies)
-            if (state.blockMovies.includes(action.payload)) {
+            if (state.blockMovies.find(element => element.movie_id === action.payload.movie_id)) {
                 return state
             } else return {
-                ...state, 
-                blockMovies: [...state.blockMovies, action.payload]}
+                ...state,
+                blockMovies: [...state.blockMovies, action.payload]
+            }
         case UNBLOCK_MOVIE:
             const newList = state.blockMovies.filter(element => element !== action.payload);
             return {
                 ...state,
-                blockMovies: newList}
+                blockMovies: newList
+            }
 
         default:
             return state

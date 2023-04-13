@@ -23,5 +23,6 @@ export const fetchMovies = (pageNum) => dispatch => (
   fetch(`https://api.themoviedb.org/3/movie/popular?api_key=6ebbb29dce0cec38629a6d732af0b3da&language=en-US&page=${pageNum}`)
     .then(response => response.json()) // Extract JSON data from response
     .then(data => {
-        dispatch(receiveMovies(data.results))}) // Dispatch action with extracted data
+      dispatch(receiveMovies(data.results))
+    }) // Dispatch action with extracted data
 );
