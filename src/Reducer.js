@@ -1,17 +1,20 @@
 //import { FETCH_MOVIES } from "./constant"
-import {RECEIVE_MOVIES} from "./Actions"
+import { RECEIVE_MOVIES } from "./Actions";
 
 const initialState = {
-    movies : [],
-    likedMovies : [],
-    blockMovies : []
-}
+  movies: [],
+  likedMovies: [],
+  blockMovies: [],
+};
 
-const Reducer = (state=initialState, action)=>{
-    switch(action.type) {
-        case RECEIVE_MOVIES:
-            return [...state.movies, action.payload]
-            /*
+const Reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case RECEIVE_MOVIES:
+      return {
+        ...state,
+        movies: action.payload,
+      };
+    /*
         case 'likedList/like':
             return {}
         case 'likedList/dislike':
@@ -20,10 +23,9 @@ const Reducer = (state=initialState, action)=>{
             return {}
         case 'blockList/unblock':
             return {} */
-
-        default:
-            return state
-    }
-}
+    default:
+      return state;
+  }
+};
 
 export default Reducer;
