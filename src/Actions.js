@@ -4,9 +4,9 @@ export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
 export const BLOCK_MOVIE = "BLOCK_MOVIE";
 export const UNBLOCK_MOVIE = "UNBLOCK_MOVIE";
 
-export const receiveMovies = movies => ({
+export const receiveMovies = (movies) => ({
   type: RECEIVE_MOVIES,
-  payload: movies
+  payload: movies,
 });
 
 export const blockMovies = movie => ({

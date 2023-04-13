@@ -1,11 +1,10 @@
 //import { FETCH_MOVIES } from "./constant"
 import {BLOCK_MOVIE, RECEIVE_MOVIES, UNBLOCK_MOVIE} from "./Actions"
-
 const initialState = {
-    movies : [],
-    likedMovies : [],
-    blockMovies : []
-}
+  movies: [],
+  likedMovies: [],
+  blockMovies: [],
+};
 
 const Reducer = (state=initialState, action)=>{
     switch(action.type) {
