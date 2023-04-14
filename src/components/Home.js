@@ -11,13 +11,11 @@ import {
   sortByReleaseDate,
   sortByReleaseDateDesc,
 } from "../Actions";
+
 import MovieDetail from "./MovieDetail";
 // Prev, Next Button, Sort Button,
 const Home = function () {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchMovies());
-  }, []);
 
   const [titleAscending, setTitleAscending] = useState(false);
   const [voteAscending, setVoteAscending] = useState(false);
@@ -28,7 +26,7 @@ const Home = function () {
   const movies = useSelector((state) => state.movies);
   const totalPage = useSelector((state) => state.totalPage);
   const currentPage = useSelector((state) => state.currentPage);
-
+  const [page, setPage] = useState(currentPage);
   const posterUrl = "https://image.tmdb.org/t/p/w500";
 
   const sortTitle = () => {
@@ -71,6 +69,18 @@ const Home = function () {
     }
   };
 
+  useEffect(() => {
+    dispatch(fetchMovies(page));
+  }, [page]);
+
+  const nextPage = () => {
+    setPage(page + 1);
+  };
+
+  const previousPage = () => {
+    setPage(page - 1);
+  };
+
   return (
     <div className="home-page">
       <div className="home-page-actions">
@@ -81,11 +91,19 @@ const Home = function () {
           <button onClick={() => sortReleaseDate()}>Release Date</button>
         </div>
         <div className="page-info">
-          <button>Prev</button>
+          {page === 1 ? (
+            <button disabled={true}>No Previous</button>
+          ) : (
+            <button onClick={previousPage}>Previous</button>
+          )}
           <p>
             {currentPage} / {totalPage}
           </p>
-          <button>Next</button>
+          {page === 37870 ? (
+            <button disabled={true}>No Next</button>
+          ) : (
+            <button onClick={nextPage}>Next</button>
+          )}
         </div>
       </div>
 

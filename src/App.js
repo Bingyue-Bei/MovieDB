@@ -28,7 +28,7 @@ function App() {
         <Route path="/block" element={<BlockPage />} />
       </Routes>
       <footer>
-        <p>Footer Place Holder</p>
+        <p>Copyright by MovieDB</p>
       </footer>
     </Router>
   );
