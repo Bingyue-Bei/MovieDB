@@ -1,14 +1,16 @@
-
-
 export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
 export const BLOCK_MOVIE = "BLOCK_MOVIE";
 export const UNBLOCK_MOVIE = "UNBLOCK_MOVIE";
 export const RECEIVE_TOTAL_PAGE_COUNT = "RECEIVE_TOTAL_PAGE_COUNT";
 export const RECEIVE_CURRENT_PAGE = "RECEIVE_CURRENT_PAGE";
 export const SORT_BY_TITLE = "SORT_BY_TITLE";
+export const SORT_BY_TITLE_DESC = "SORT_BY_TITLE_DESC";
 export const SORT_BY_VOTE = "SORT_BY_VOTE";
+export const SORT_BY_VOTE_DESC = "SORT_BY_VOTE_DESC";
 export const SORT_BY_VOTE_AVERAGE = "SORT_BY_VOTE_AVERAGE";
+export const SORT_BY_VOTE_AVERAGE_DESC = "SORT_BY_VOTE_AVERAGE_DESC";
 export const SORT_BY_RELEASE_DATE = "SORT_BY_RELEASE_DATE";
+export const SORT_BY_RELEASE_DATE_DESC = "SORT_BY_RELEASE_DATE_DESC";
 
 // add by cchen 20230413 for `like page` ticket
 export const LIKED_MOVIES = "LIKED_MOVIES";
@@ -33,16 +35,32 @@ export const sortByTitle = () => ({
   type: SORT_BY_TITLE,
 });
 
+export const sortByTitleDesc = () => ({
+  type: SORT_BY_TITLE_DESC,
+});
+
 export const sortByVote = () => ({
   type: SORT_BY_VOTE,
+});
+
+export const sortByVoteDesc = () => ({
+  type: SORT_BY_VOTE_DESC,
 });
 
 export const sortByVoteAverage = () => ({
   type: SORT_BY_VOTE_AVERAGE,
 });
 
+export const sortByVoteAverageDesc = () => ({
+  type: SORT_BY_VOTE_AVERAGE_DESC,
+});
+
 export const sortByReleaseDate = () => ({
   type: SORT_BY_RELEASE_DATE,
+});
+
+export const sortByReleaseDateDesc = () => ({
+  type: SORT_BY_RELEASE_DATE_DESC,
 });
 
 export const blockMovies = (movie) => ({
@@ -55,7 +73,7 @@ export const unblockMovies = (movie) => ({
   payload: movie,
 });
 
-// likeMovies() dislikeMovies() add by cchen 20230413 for `like page` ticket 
+// likeMovies() dislikeMovies() add by cchen 20230413 for `like page` ticket
 export const likedMovies = (movie) => ({
   type: LIKED_MOVIES,
   payload: movie,
