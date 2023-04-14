@@ -44,7 +44,7 @@ function BlockPage() {
   return (
     <div className="movie-list-container">
       {list.map((element) => (
-        <div className="movie-container">
+        <div className="movie-container" key={element.id}>
           <img
             src={`http://image.tmdb.org/t/p/w500${element.poster_path}`}
             className="poster"
