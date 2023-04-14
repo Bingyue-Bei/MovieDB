@@ -11,8 +11,8 @@ import {
   SORT_BY_RELEASE_DATE,
   
   // add by cchen 20230413 for `like page` ticket
-  LIKED_MOVIE,
-  DISLIKED_MOVIE,
+  LIKED_MOVIES,
+  DISLIKED_MOVIES,
 
 } from "./Actions";
 
@@ -76,7 +76,7 @@ const Reducer = (state = initialState, action) => {
       };
 
     // add by cchen 20230413 for `like page` ticket
-    case LIKED_MOVIE:
+    case LIKED_MOVIES:
       if (
         state.likedMovies.find(
           (element) => element.movie_id === action.payload.movie_id
@@ -88,7 +88,7 @@ const Reducer = (state = initialState, action) => {
           ...state,
           likedMovies: [...state.likedMovies, action.payload],
         };
-    case DISLIKED_MOVIE:
+    case DISLIKED_MOVIES:
       const afterList = state.likedMovies.filter(
         (element) => element !== action.payload
       );
