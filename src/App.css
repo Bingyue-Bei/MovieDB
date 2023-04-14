@@ -1,38 +1,352 @@
-.App {
-  text-align: center;
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+body {
+  background-color: black;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-bar {
+  /* display: flex;
+  flex-direction: left;
+  justify-content: space-between; */
+  border-bottom: 2px solid black;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logo {
+  height: 70px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.nav-text {
+  margin-left: 20px;
+  margin-top: 45px;
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.poster {
+  height: 300px;
+  width: auto;
+}
+
+.input-container {
+  padding-top: 50px;
+}
+
+.movie-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-list-container img {
+  height: 500px;
+  width: max-content;
+  border-radius: 10px;
+}
+
+.movie-list-card__title {
+  padding: 10px;
+  font-size: 1.1em;
+  text-align: center;
+  height: max-content;
+  width: max-content;
+}
+
+.movie-list-card__action {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.like-icon,
+.block-icon {
+  cursor: pointer;
+}
+
+.home-page-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sorting-buttons,
+.page-info {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 10px;
+  width: 95%;
+}
+
+.sorting-buttons button,
+.page-info button {
+  width: 8rem;
+  height: 1.5rem;
+}
+
+.page-info {
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.movie-list-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: max-content;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#movie-title {
+  cursor: pointer;
+}
+
+.image-bg {
+  opacity: 0.6;
+  width: 771px;
+  height: 476px;
+  margin-top: -16px;
+  margin-left: -32px;
+  border-radius: 3px;
+}
+
+.movie-detail {
+  width: 775px;
+  height: 480px;
+  border-radius: 5px;
+  margin-top: -500px;
+  margin-left: -32px;
+  position: absolute;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  color:black;
+}
+
+.movie-detail-item {
+  padding: 10px;
+  text-align: center;
+}
+
+.movie-detail-poster {
+  margin-top: 25px;
+  width: 250px;
+  border: 2px solid black;
+}
+
+#movie-text {
+  width: 400px;
+  margin-top: 25px;
+}
+
+.movie-genre-Action {
+  background-color: violet;
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-Adventure {
+  background-color: orange;
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-Animation {
+  background-color: yellow;
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-Comedy {
+  background-color: rgb(21, 196, 29);
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-Crime {
+  background-color: lightblue;
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-Documentary {
+  background-color: gainsboro;
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-Drama {
+  background-color: rgb(209, 45, 45);
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-Family {
+  background-color: rgb(163, 115, 27);
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-Fantasy {
+  background-color: rgb(163, 27, 122);
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-History {
+  background-color: rgb(161, 77, 77);
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-Horror {
+  background-color: rgb(106, 77, 161);
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-Music {
+  background-color: rgb(84, 211, 84);
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-Mystery {
+  background-color: rgb(180, 223, 82);
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-Romance {
+  background-color: rgb(190, 138, 40);
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-Science {
+  background-color: rgb(46, 118, 167);
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-TV {
+  background-color: rgb(125, 167, 46);
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-Thriller {
+  background-color: rgb(224, 12, 83);
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-War {
+  background-color: rgb(233, 220, 224);
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-genre-Western {
+  background-color: rgb(184, 126, 93);
+  border-radius: 5px;
+  height: 25px;
+  font-size: 16px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+
+.movie-companies {
+  width: 400px;
+  margin-top: 25px;
+  border: 1px solid gainsboro;
+  height: 100px;
+  background-color: white;
+  opacity: 0.8;
+  border-radius: 5px;
+}
+
+.company-img {
+  width: 80px;
+  margin-left: 8px;
+  height: 40px;
+}
+
+.button-close {
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
 }
