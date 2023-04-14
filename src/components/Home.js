@@ -1,22 +1,29 @@
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { fetchMovies, sortByTitle } from "../Actions";
 import MovieDetail from "./MovieDetail";
 // Prev, Next Button, Sort Button,
 const Home = function () {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchMovies());
-  }, []);
-
   //access fetched movies and total page number from store
   const movies = useSelector((state) => state.movies);
   const totalPage = useSelector((state) => state.totalPage);
   const currentPage = useSelector((state) => state.currentPage);
-
+  const [page, setPage] = useState(currentPage);
   const posterUrl = "https://image.tmdb.org/t/p/w500";
 
+   useEffect(() => {
+     dispatch(fetchMovies(page));
+   }, [page]);
+
+    const nextPage = () => {
+      setPage(page + 1);
+    };
+
+    const previousPage = () => {
+      setPage(page - 1);
+    };
   return (
     <div className="home-page">
       <div className="home-page-actions">
@@ -27,11 +34,19 @@ const Home = function () {
           <button>Release Date</button>
         </div>
         <div className="page-info">
-          <button>Prev</button>
+          {page === 1 ? (
+            <button disabled={true}>No Previous</button>
+          ) : (
+            <button onClick={previousPage}>Previous</button>
+          )}
           <p>
             {currentPage} / {totalPage}
           </p>
-          <button>Next</button>
+          {page === 37870 ? (
+            <button disabled={true}>No Next</button>
+          ) : (
+            <button onClick={nextPage}>Next</button>
+          )}
         </div>
       </div>
 
@@ -45,7 +60,7 @@ const Home = function () {
                     alt={"Poster of " + element.title}
                   ></img>
                   {/* <p className="movie-list-card__title">{element.title}</p> */}
-                  <MovieDetail movie = {element } />
+                  <MovieDetail movie={element} />
                   <div className="movie-list-card__action">
                     <div className="like-icon">Like</div>
                     <div className="block-icon">Block</div>
