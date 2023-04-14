@@ -6,7 +6,10 @@ import axios from "axios";
 function MovieDetail({ movie }) {
   const [open, setOpen] = useState(false);
   const [clickedMovie, setClickedMovie] = useState({});
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setClickedMovie({});
+    setOpen(false);
+  };
 
   return (
     <>
@@ -74,7 +77,9 @@ function MovieDetail({ movie }) {
                 ) : (
                   <></>
                 )}
-                <p style={{"fontWeight":"bold"}}>Overview: {clickedMovie.overview}</p>
+                <p style={{ fontWeight: "bold" }}>
+                  Overview: {clickedMovie.overview}
+                </p>
 
                 <div className="movie-companies">
                   {clickedMovie.production_companies ? (
