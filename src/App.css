@@ -1,3 +1,16 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: white;
+}
+
 .poster {
   height: 300px;
   width: auto;
@@ -5,4 +18,74 @@
 
 .input-container {
   padding-top: 50px;
+}
+
+.movie-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-list-container img {
+  height: 500px;
+  width: max-content;
+  border-radius: 10px;
+}
+
+.movie-list-card__title {
+  padding: 10px;
+  font-size: 1.1em;
+  text-align: center;
+  height: max-content;
+  width: max-content;
+}
+
+.movie-list-card__action {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.like-icon,
+.block-icon {
+  cursor: pointer;
+}
+
+.home-page-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sorting-buttons,
+.page-info {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 10px;
+  width: 95%;
+}
+
+.sorting-buttons button,
+.page-info button {
+  width: 8rem;
+  height: 1.5rem;
+}
+
+.page-info {
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.movie-list-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: max-content;
+  border-radius: 10px;
+  padding: 20px;
 }
