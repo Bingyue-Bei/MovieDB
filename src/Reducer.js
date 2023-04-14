@@ -9,6 +9,11 @@ import {
   SORT_BY_VOTE,
   SORT_BY_VOTE_AVERAGE,
   SORT_BY_RELEASE_DATE,
+  
+  // add by cchen 20230413 for `like page` ticket
+  LIKED_MOVIE,
+  DISLIKED_MOVIE,
+
 } from "./Actions";
 
 const initialState = {
@@ -49,10 +54,6 @@ const Reducer = (state = initialState, action) => {
           return 0;
         }),
       };
-    case "likedList/like":
-      return state;
-    case "likedList/dislike":
-      return state;
     case BLOCK_MOVIE:
       if (
         state.blockMovies.find(
@@ -74,6 +75,28 @@ const Reducer = (state = initialState, action) => {
         blockMovies: newList,
       };
 
+    // add by cchen 20230413 for `like page` ticket
+    case LIKED_MOVIE:
+      if (
+        state.likedMovies.find(
+          (element) => element.movie_id === action.payload.movie_id
+        )
+      ) {
+        return state;
+      } else
+        return {
+          ...state,
+          likedMovies: [...state.likedMovies, action.payload],
+        };
+    case DISLIKED_MOVIE:
+      const afterList = state.likedMovies.filter(
+        (element) => element !== action.payload
+      );
+      return {
+        ...state,
+        likedMovies: afterList,
+      };
+    
     default:
       return state;
   }
