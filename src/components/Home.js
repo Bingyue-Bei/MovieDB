@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import { fetchMovies, sortByTitle } from "../Actions";
+import MovieDetail from "./MovieDetail";
 // Prev, Next Button, Sort Button,
 const Home = function () {
   const dispatch = useDispatch();
@@ -43,7 +44,8 @@ const Home = function () {
                     src={posterUrl + element.poster_path}
                     alt={"Poster of " + element.title}
                   ></img>
-                  <p className="movie-list-card__title">{element.title}</p>
+                  {/* <p className="movie-list-card__title">{element.title}</p> */}
+                  <MovieDetail movie = {element } />
                   <div className="movie-list-card__action">
                     <div className="like-icon">Like</div>
                     <div className="block-icon">Block</div>

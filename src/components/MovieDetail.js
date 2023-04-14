@@ -34,7 +34,7 @@ function MovieDetail({ movie }) {
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
-              width: 710,
+              width: 775,
               height: 480,
               bgcolor: "background.paper",
               border: "2px solid #000",
@@ -74,7 +74,7 @@ function MovieDetail({ movie }) {
                 ) : (
                   <></>
                 )}
-                <p>Overview: {clickedMovie.overview}</p>
+                <p style={{"fontWeight":"bold"}}>Overview: {clickedMovie.overview}</p>
 
                 <div className="movie-companies">
                   {clickedMovie.production_companies ? (
