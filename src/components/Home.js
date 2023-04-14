@@ -15,9 +15,6 @@ import MovieDetail from "./MovieDetail";
 // Prev, Next Button, Sort Button,
 const Home = function () {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchMovies());
-  }, []);
 
   const [titleAscending, setTitleAscending] = useState(false);
   const [voteAscending, setVoteAscending] = useState(false);
