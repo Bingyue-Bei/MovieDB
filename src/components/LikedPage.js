@@ -13,7 +13,7 @@ function LikedPage() {
       .then(data => {
         console.log(data);
         if (data.success === undefined) {
-          dispatch(likeMovies(data));
+          dispatch(likedMovies(data));
         } else {
           alert("invalid movie id!");
         }
@@ -22,7 +22,7 @@ function LikedPage() {
   }
 
   function handleRemoveElement(element) {
-    dispatch(dislikeMovies(element));
+    dispatch(dislikedMovies(element));
   }
   return (
     <div className="movie-list-container">
