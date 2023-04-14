@@ -5,7 +5,7 @@ import { likedMovies, dislikedMovies } from '../Actions';
 function LikedPage() {
   const [newElement, setNewElement] = useState('');
   const dispatch = useDispatch();
-  const list = useSelector(state => state.likeMovies);
+  const list = useSelector(state => state.likedMovies);
   function handleAddElement() {
     const baseURL = `https://api.themoviedb.org/3/movie/${newElement}?api_key=6ebbb29dce0cec38629a6d732af0b3da&language=en-US`
     fetch(baseURL)
@@ -13,7 +13,7 @@ function LikedPage() {
       .then(data => {
         console.log(data);
         if (data.success === undefined) {
-          dispatch(likeMovies(data));
+          dispatch(likedMovies(data));
         } else {
           alert("invalid movie id!");
         }
@@ -22,7 +22,7 @@ function LikedPage() {
   }
 
   function handleRemoveElement(element) {
-    dispatch(dislikeMovies(element));
+    dispatch(dislikedMovies(element));
   }
   return (
     <div className="movie-list-container">

@@ -11,8 +11,8 @@ export const SORT_BY_VOTE_AVERAGE = "SORT_BY_VOTE_AVERAGE";
 export const SORT_BY_RELEASE_DATE = "SORT_BY_RELEASE_DATE";
 
 // add by cchen 20230413 for `like page` ticket
-export const LIKED_MOVIE = "LIKED_MOVIE";
-export const DISLIKED_MOVIE = "DISLIKED_MOVIE";
+export const LIKED_MOVIES = "LIKED_MOVIES";
+export const DISLIKED_MOVIES = "DISLIKED_MOVIES";
 
 export const receiveMovies = (movies) => ({
   type: RECEIVE_MOVIES,
@@ -57,12 +57,12 @@ export const unblockMovies = (movie) => ({
 
 // likeMovies() dislikeMovies() add by cchen 20230413 for `like page` ticket 
 export const likedMovies = (movie) => ({
-  type: LIKED_MOVIE,
+  type: LIKED_MOVIES,
   payload: movie,
 });
 
 export const dislikedMovies = (movie) => ({
-  type: DISLIKED_MOVIE,
+  type: DISLIKED_MOVIES,
   payload: movie,
 });
 
