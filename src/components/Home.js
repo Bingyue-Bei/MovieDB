@@ -13,6 +13,8 @@ import {
 } from "../Actions";
 
 import MovieDetail from "./MovieDetail";
+import PropTypes from "prop-types";
+
 // Prev, Next Button, Sort Button,
 const Home = function () {
   const dispatch = useDispatch();
@@ -28,6 +30,7 @@ const Home = function () {
   const currentPage = useSelector((state) => state.currentPage);
   const [page, setPage] = useState(currentPage);
   const posterUrl = "https://image.tmdb.org/t/p/w500";
+
 
   const sortTitle = () => {
     if (titleAscending) {
@@ -71,7 +74,7 @@ const Home = function () {
 
   useEffect(() => {
     dispatch(fetchMovies(page));
-  }, [page]);
+  }, [dispatch, page]);
 
   const nextPage = () => {
     setPage(page + 1);
@@ -130,4 +133,10 @@ const Home = function () {
     </div>
   );
 };
+
+Home.propTypes = {
+  movies: PropTypes.array.isRequired,
+};
+
+
 export default Home;

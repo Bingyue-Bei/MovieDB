@@ -1,4 +1,6 @@
-// Part of the navigation
-const Search = function() {}
+
+const Search = () => {
+ 
+};
 
 export default Search;

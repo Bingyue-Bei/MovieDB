@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import App from './App';
 import Reducer from './Reducer';
 
+
 const store = createStore(Reducer, applyMiddleware(thunk));
 const rootElement = document.getElementById('root');
 createRoot(rootElement).render(
