@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
-import { fetchMovies, sortByTitle } from "../Actions";
+import { fetchMovies, sortByTitle, likedMovies } from "../Actions";
 import MovieDetail from "./MovieDetail";
 // Prev, Next Button, Sort Button,
 const Home = function () {
@@ -24,6 +24,11 @@ const Home = function () {
     const previousPage = () => {
       setPage(page - 1);
     };
+
+    const handleLike = (element) => {
+      dispatch(likedMovies(element));
+    };
+
   return (
     <div className="home-page">
       <div className="home-page-actions">
@@ -62,7 +67,7 @@ const Home = function () {
                   {/* <p className="movie-list-card__title">{element.title}</p> */}
                   <MovieDetail movie={element} />
                   <div className="movie-list-card__action">
-                    <div className="like-icon">Like</div>
+                    <div className="like-icon" onClick={() => handleLike(element)} >Like</div>
                     <div className="block-icon">Block</div>
                   </div>
                 </div>

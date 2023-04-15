@@ -79,7 +79,7 @@ const Reducer = (state = initialState, action) => {
     case LIKED_MOVIES:
       if (
         state.likedMovies.find(
-          (element) => element.movie_id === action.payload.movie_id
+          (element) => element.id === action.payload.id
         )
       ) {
         return state;
