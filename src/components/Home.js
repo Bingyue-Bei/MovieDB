@@ -10,7 +10,9 @@ import {
   sortByVoteAverageDesc,
   sortByReleaseDate,
   sortByReleaseDateDesc,
+  likedMovies,
 } from "../Actions";
+
 import MovieDetail from "./MovieDetail";
 // Prev, Next Button, Sort Button,
 const Home = function () {
@@ -21,11 +23,12 @@ const Home = function () {
   const [voteAvgAscending, setVoteAvgAscending] = useState(false);
   const [dateAscending, setDateAscending] = useState(false);
 
+
   //access fetched movies and total page number from store
   const movies = useSelector((state) => state.movies);
   const totalPage = useSelector((state) => state.totalPage);
   const currentPage = useSelector((state) => state.currentPage);
-
+  const [page, setPage] = useState(currentPage);
   const posterUrl = "https://image.tmdb.org/t/p/w500";
 
   const sortTitle = () => {
@@ -78,11 +81,19 @@ const Home = function () {
           <button onClick={() => sortReleaseDate()}>Release Date</button>
         </div>
         <div className="page-info">
-          <button>Prev</button>
+          {page === 1 ? (
+            <button disabled={true}>No Previous</button>
+          ) : (
+            <button onClick={previousPage}>Previous</button>
+          )}
           <p>
             {currentPage} / {totalPage}
           </p>
-          <button>Next</button>
+          {page === 37870 ? (
+            <button disabled={true}>No Next</button>
+          ) : (
+            <button onClick={nextPage}>Next</button>
+          )}
         </div>
       </div>
 
@@ -98,7 +109,7 @@ const Home = function () {
                   {/* <p className="movie-list-card__title">{element.title}</p> */}
                   <MovieDetail movie={element} />
                   <div className="movie-list-card__action">
-                    <div className="like-icon">Like</div>
+                    <div className="like-icon" onClick={() => handleLike(element)} >Like</div>
                     <div className="block-icon">Block</div>
                   </div>
                 </div>
