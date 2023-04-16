@@ -6,14 +6,16 @@ import {
   RECEIVE_TOTAL_PAGE_COUNT,
   RECEIVE_CURRENT_PAGE,
   SORT_BY_TITLE,
+  SORT_BY_TITLE_DESC,
   SORT_BY_VOTE,
+  SORT_BY_VOTE_DESC,
   SORT_BY_VOTE_AVERAGE,
+  SORT_BY_VOTE_AVERAGE_DESC,
   SORT_BY_RELEASE_DATE,
-  
+  SORT_BY_RELEASE_DATE_DESC,
   // add by cchen 20230413 for `like page` ticket
   LIKED_MOVIES,
   DISLIKED_MOVIES,
-
 } from "./Actions";
 
 const initialState = {
@@ -52,6 +54,61 @@ const Reducer = (state = initialState, action) => {
             return 1;
           }
           return 0;
+        }),
+      };
+    case SORT_BY_TITLE_DESC:
+      return {
+        ...state,
+        movies: state.movies.slice().sort((a, b) => {
+          if (b.title < a.title) {
+            return -1;
+          }
+          if (b.title > a.title) {
+            return 1;
+          }
+          return 0;
+        }),
+      };
+    case SORT_BY_VOTE:
+      return {
+        ...state,
+        movies: state.movies.slice().sort((a, b) => {
+          return a.vote_count - b.vote_count;
+        }),
+      };
+    case SORT_BY_VOTE_DESC:
+      return {
+        ...state,
+        movies: state.movies.slice().sort((a, b) => {
+          return b.vote_count - a.vote_count;
+        }),
+      };
+    case SORT_BY_VOTE_AVERAGE:
+      return {
+        ...state,
+        movies: state.movies.slice().sort((a, b) => {
+          return a.vote_average - b.vote_average;
+        }),
+      };
+    case SORT_BY_VOTE_AVERAGE_DESC:
+      return {
+        ...state,
+        movies: state.movies.slice().sort((a, b) => {
+          return b.vote_average - a.vote_average;
+        }),
+      };
+    case SORT_BY_RELEASE_DATE:
+      return {
+        ...state,
+        movies: state.movies.slice().sort((a, b) => {
+          return new Date(a.release_date) - new Date(b.release_date);
+        }),
+      };
+    case SORT_BY_RELEASE_DATE_DESC:
+      return {
+        ...state,
+        movies: state.movies.slice().sort((a, b) => {
+          return new Date(b.release_date) - new Date(a.release_date);
         }),
       };
     case BLOCK_MOVIE:
@@ -96,7 +153,7 @@ const Reducer = (state = initialState, action) => {
         ...state,
         likedMovies: afterList,
       };
-    
+
     default:
       return state;
   }

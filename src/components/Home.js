@@ -1,10 +1,28 @@
 import { useDispatch, useSelector } from "react-redux";
-import React, { useState, useEffect } from "react";
-import { fetchMovies, sortByTitle, likedMovies } from "../Actions";
+import React, { useEffect, useState } from "react";
+import {
+  fetchMovies,
+  sortByTitle,
+  sortByTitleDesc,
+  sortByVote,
+  sortByVoteDesc,
+  sortByVoteAverage,
+  sortByVoteAverageDesc,
+  sortByReleaseDate,
+  sortByReleaseDateDesc,
+  likedMovies,
+} from "../Actions";
+
 import MovieDetail from "./MovieDetail";
 // Prev, Next Button, Sort Button,
 const Home = function () {
   const dispatch = useDispatch();
+
+  const [titleAscending, setTitleAscending] = useState(false);
+  const [voteAscending, setVoteAscending] = useState(false);
+  const [voteAvgAscending, setVoteAvgAscending] = useState(false);
+  const [dateAscending, setDateAscending] = useState(false);
+
 
   //access fetched movies and total page number from store
   const movies = useSelector((state) => state.movies);
@@ -13,30 +31,54 @@ const Home = function () {
   const [page, setPage] = useState(currentPage);
   const posterUrl = "https://image.tmdb.org/t/p/w500";
 
-   useEffect(() => {
-     dispatch(fetchMovies(page));
-   }, [page]);
+  const sortTitle = () => {
+    if (titleAscending) {
+      dispatch(sortByTitleDesc());
+      setTitleAscending(false);
+    } else {
+      dispatch(sortByTitle());
+      setTitleAscending(true);
+    }
+  };
 
-    const nextPage = () => {
-      setPage(page + 1);
-    };
+  const sortVote = () => {
+    if (voteAscending) {
+      dispatch(sortByVoteDesc());
+      setVoteAscending(false);
+    } else {
+      dispatch(sortByVote());
+      setVoteAscending(true);
+    }
+  };
 
-    const previousPage = () => {
-      setPage(page - 1);
-    };
+  const sortVoteAvg = () => {
+    if (voteAvgAscending) {
+      dispatch(sortByVoteAverageDesc());
+      setVoteAvgAscending(false);
+    } else {
+      dispatch(sortByVoteAverage());
+      setVoteAvgAscending(true);
+    }
+  };
 
-    const handleLike = (element) => {
-      dispatch(likedMovies(element));
-    };
+  const sortReleaseDate = () => {
+    if (dateAscending) {
+      dispatch(sortByReleaseDateDesc());
+      setDateAscending(false);
+    } else {
+      dispatch(sortByReleaseDate());
+      setDateAscending(true);
+    }
+  };
 
   return (
     <div className="home-page">
       <div className="home-page-actions">
         <div className="sorting-buttons">
-          <button onClick={() => dispatch(sortByTitle())}>Title</button>
-          <button>Vote Count</button>
-          <button>Vote Average</button>
-          <button>Release Date</button>
+          <button onClick={() => sortTitle()}>Title</button>
+          <button onClick={() => sortVote()}>Vote Count</button>
+          <button onClick={() => sortVoteAvg()}>Vote Average</button>
+          <button onClick={() => sortReleaseDate()}>Release Date</button>
         </div>
         <div className="page-info">
           {page === 1 ? (
