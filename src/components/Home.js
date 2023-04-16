@@ -11,6 +11,7 @@ import {
   sortByReleaseDate,
   sortByReleaseDateDesc,
   likedMovies,
+  dislikedMovies,
 } from "../Actions";
 
 import MovieDetail from "./MovieDetail";
@@ -32,6 +33,8 @@ const Home = function () {
   const [page, setPage] = useState(currentPage);
   const [query, setQuery] = useState("");
   const posterUrl = "https://image.tmdb.org/t/p/w500";
+
+  const likedList = useSelector(state => state.likedMovies);
 
   const sortTitle = () => {
     if (titleAscending) {
@@ -91,6 +94,16 @@ const Home = function () {
     setPage(page - 1);
   };
 
+  const handleLike = (element) => {
+    const movieIndex = likedList.findIndex(movie => movie.id === element.id);
+    if (movieIndex === -1) {
+      // movie not in liked list, add it
+      dispatch(likedMovies(element));
+    } else {
+      // movie already in liked list, remove it
+      dispatch(dislikedMovies(element));
+    }
+  };
 
   return (
     <div className="home-page">
@@ -142,7 +155,7 @@ const Home = function () {
                   {/* <p className="movie-list-card__title">{element.title}</p> */}
                   <MovieDetail movie={element} />
                   <div className="movie-list-card__action">
-                    <div className="like-icon" onClick={() => handleLike(element)} >Like</div>
+                    <div className="like-icon" onClick={() => handleLike(element)} >{ likedList.findIndex(movie => movie.id === element.id) === -1 ? 'Like' : 'Liked!!!' }</div>
                     <div className="block-icon">Block</div>
                   </div>
                 </div>

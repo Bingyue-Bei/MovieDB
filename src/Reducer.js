@@ -147,8 +147,9 @@ const Reducer = (state = initialState, action) => {
         };
     case DISLIKED_MOVIES:
       const afterList = state.likedMovies.filter(
-        (element) => element !== action.payload
+        (element) => element.id !== action.payload.id
       );
+      console.log(afterList, 'im in Reducer.js');
       return {
         ...state,
         likedMovies: afterList,

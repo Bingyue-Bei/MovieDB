@@ -10,20 +10,6 @@ function LikedPage() {
   const [newElement, setNewElement] = useState('');
   const dispatch = useDispatch();
   const list = useSelector(state => state.likedMovies);
-  // function handleAddElement() {
-  //   const baseURL = `https://api.themoviedb.org/3/movie/${newElement}?api_key=6ebbb29dce0cec38629a6d732af0b3da&language=en-US`
-  //   fetch(baseURL)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       console.log(data);
-  //       if (data.success === undefined) {
-  //         dispatch(likedMovies(data));
-  //       } else {
-  //         alert("invalid movie id!");
-  //       }
-  //     })
-  //   setNewElement('');
-  // }
 
   function handleRemoveElement(element) {
     dispatch(dislikedMovies(element));
@@ -41,15 +27,6 @@ function LikedPage() {
           <button onClick={() => handleRemoveElement(element)}>Remove</button>
         </div>
       ))}
-      {/* <div className="input-container">
-        <input
-          value={newElement}
-          onChange={(e) => {
-            setNewElement(e.target.value);
-          }}
-        />
-        <button onClick={handleAddElement}>Add</button>
-      </div> */}
     </div>
   );
 }
