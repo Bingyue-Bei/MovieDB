@@ -78,9 +78,6 @@ const Home = function () {
     setQuery("");
   };
 
-  const handleLike=(element) =>{
-    dispatch(likedMovies(element));
-  };
 
   useEffect(() => {
     dispatch(fetchMovies(page, query));
