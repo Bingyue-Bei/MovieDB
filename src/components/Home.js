@@ -29,6 +29,7 @@ const Home = function () {
   const totalPage = useSelector((state) => state.totalPage);
   const currentPage = useSelector((state) => state.currentPage);
   const [page, setPage] = useState(currentPage);
+  const [query, setQuery] = useState("");
   const posterUrl = "https://image.tmdb.org/t/p/w500";
 
 
@@ -72,9 +73,14 @@ const Home = function () {
     }
   };
 
+  const handleSearch = (query) => {
+    dispatch(fetchMovies(page, query));
+    setQuery("");
+  };
+
   useEffect(() => {
-    dispatch(fetchMovies(page));
-  }, [dispatch, page]);
+    dispatch(fetchMovies(page, query));
+  }, [dispatch, query, page]);
 
   const nextPage = () => {
     setPage(page + 1);
@@ -92,6 +98,17 @@ const Home = function () {
           <button onClick={() => sortVote()}>Vote Count</button>
           <button onClick={() => sortVoteAvg()}>Vote Average</button>
           <button onClick={() => sortReleaseDate()}>Release Date</button>
+        </div>
+        <div className="search-box">
+          <input
+            type="text"
+            placeholder="Search movies"
+            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value);
+            }}
+          />
+          <button onClick={handleSearch}>Search</button>
         </div>
         <div className="page-info">
           {page === 1 ? (
