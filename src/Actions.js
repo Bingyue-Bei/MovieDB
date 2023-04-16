@@ -1,5 +1,3 @@
-import { queryByTestId } from "@testing-library/react";
-
 export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
 export const BLOCK_MOVIE = "BLOCK_MOVIE";
 export const UNBLOCK_MOVIE = "UNBLOCK_MOVIE";

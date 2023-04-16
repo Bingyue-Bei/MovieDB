@@ -10,6 +10,7 @@ import {
   sortByVoteAverageDesc,
   sortByReleaseDate,
   sortByReleaseDateDesc,
+  likedMovies,
 } from "../Actions";
 
 import MovieDetail from "./MovieDetail";
@@ -31,7 +32,6 @@ const Home = function () {
   const [page, setPage] = useState(currentPage);
   const [query, setQuery] = useState("");
   const posterUrl = "https://image.tmdb.org/t/p/w500";
-
 
   const sortTitle = () => {
     if (titleAscending) {
@@ -90,6 +90,7 @@ const Home = function () {
     setPage(page - 1);
   };
 
+
   return (
     <div className="home-page">
       <div className="home-page-actions">
@@ -109,6 +110,7 @@ const Home = function () {
             }}
           />
           <button onClick={handleSearch}>Search</button>
+
         </div>
         <div className="page-info">
           {page === 1 ? (
@@ -139,7 +141,7 @@ const Home = function () {
                   {/* <p className="movie-list-card__title">{element.title}</p> */}
                   <MovieDetail movie={element} />
                   <div className="movie-list-card__action">
-                    <div className="like-icon">Like</div>
+                    <div className="like-icon" onClick={() => handleLike(element)} >Like</div>
                     <div className="block-icon">Block</div>
                   </div>
                 </div>
