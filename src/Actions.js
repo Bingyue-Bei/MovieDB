@@ -83,7 +83,7 @@ export const dislikedMovies = (movie) => ({
   type: DISLIKED_MOVIES,
   payload: movie,
 });
-
+/*
 export const fetchMovies =
   (pageNum = 1) =>
   (dispatch) =>
@@ -96,3 +96,17 @@ export const fetchMovies =
         dispatch(receiveTotalPageCount(data.total_pages));
         dispatch(receiveMovies(data.results));
       }); // Dispatch action with extracted data
+*/
+export const fetchMovies = (page=1, query="") =>{
+  let endpoint = `https://api.themoviedb.org/3/movie/popular?api_key=6ebbb29dce0cec38629a6d732af0b3da&language=en-US&page=${page}`;
+  if (query !== "") {
+    endpoint = `https://api.themoviedb.org/3/search/movie?api_key=6ebbb29dce0cec38629a6d732af0b3da&language=en-US&query=${query}&page=${page}`;
+  }
+  return (dispatch) => fetch(endpoint)
+  .then((response) => response.json()) // Extract JSON data from response
+  .then((data) => {
+    dispatch(receiveCurrentPage(data.page));
+    dispatch(receiveTotalPageCount(data.total_pages));
+    dispatch(receiveMovies(data.results));
+  }); // Dispatch action with extracted data
+}

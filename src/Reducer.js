@@ -114,7 +114,7 @@ const Reducer = (state = initialState, action) => {
     case BLOCK_MOVIE:
       if (
         state.blockMovies.find(
-          (element) => element.movie_id === action.payload.movie_id
+          (element) => element.id === action.payload.id
         )
       ) {
         return state;

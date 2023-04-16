@@ -14,6 +14,8 @@ import {
 } from "../Actions";
 
 import MovieDetail from "./MovieDetail";
+import PropTypes from "prop-types";
+
 // Prev, Next Button, Sort Button,
 const Home = function () {
   const dispatch = useDispatch();
@@ -23,12 +25,12 @@ const Home = function () {
   const [voteAvgAscending, setVoteAvgAscending] = useState(false);
   const [dateAscending, setDateAscending] = useState(false);
 
-
   //access fetched movies and total page number from store
   const movies = useSelector((state) => state.movies);
   const totalPage = useSelector((state) => state.totalPage);
   const currentPage = useSelector((state) => state.currentPage);
   const [page, setPage] = useState(currentPage);
+  const [query, setQuery] = useState("");
   const posterUrl = "https://image.tmdb.org/t/p/w500";
 
   const sortTitle = () => {
@@ -71,6 +73,24 @@ const Home = function () {
     }
   };
 
+  const handleSearch = (query) => {
+    dispatch(fetchMovies(page, query));
+    setQuery("");
+  };
+
+  useEffect(() => {
+    dispatch(fetchMovies(page, query));
+  }, [dispatch, query, page]);
+
+  const nextPage = () => {
+    setPage(page + 1);
+  };
+
+  const previousPage = () => {
+    setPage(page - 1);
+  };
+
+
   return (
     <div className="home-page">
       <div className="home-page-actions">
@@ -79,6 +99,18 @@ const Home = function () {
           <button onClick={() => sortVote()}>Vote Count</button>
           <button onClick={() => sortVoteAvg()}>Vote Average</button>
           <button onClick={() => sortReleaseDate()}>Release Date</button>
+        </div>
+        <div className="search-box">
+          <input
+            type="text"
+            placeholder="Search movies"
+            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value);
+            }}
+          />
+          <button onClick={handleSearch}>Search</button>
+
         </div>
         <div className="page-info">
           {page === 1 ? (
@@ -120,4 +152,10 @@ const Home = function () {
     </div>
   );
 };
+
+Home.propTypes = {
+  movies: PropTypes.array.isRequired,
+};
+
+
 export default Home;

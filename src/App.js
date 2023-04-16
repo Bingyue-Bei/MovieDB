@@ -2,7 +2,7 @@ import './App.css';
 import Home from './components/Home';
 import LikedPage from './components/LikedPage';
 import BlockPage from './components/BlockPage';
-import Search from './components/Search';
+
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import logo from "./assets/logo.png"
 //Navigation Bar, Router
@@ -20,7 +20,6 @@ function App() {
         <Link className="nav-text" to="/block">
           Block Page
         </Link>
-        <Search />
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />

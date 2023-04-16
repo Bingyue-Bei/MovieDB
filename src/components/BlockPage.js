@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { blockMovies, unblockMovies } from '../Actions';
 import MovieDetail from "./MovieDetail";
+import PropTypes from "prop-types";
+
 /*
 function fetchMovie(movieID) {
     const baseURL = `https://api.themoviedb.org/3/movie/${movieID}?api_key=6ebbb29dce0cec38629a6d732af0b3da&language=en-US`
@@ -44,10 +46,10 @@ function BlockPage() {
   return (
     <div className="movie-list-container">
       {list.map((element) => (
-        <div className="movie-container">
+        <div className="movie-container" key={element.id}>
           <img
             src={`http://image.tmdb.org/t/p/w500${element.poster_path}`}
-            className="poster"
+            className="poster" alt="poster"
           />
           {/* <p>{element.title}</p> */}
           <MovieDetail movie={element} />
@@ -66,5 +68,16 @@ function BlockPage() {
     </div>
   );
 }
+
+BlockPage.propTypes = {
+  // List of movies to be blocked
+  blockMovies: PropTypes.array.isRequired,
+
+  // Redux dispatch function for blocking movies
+  blockMoviesAction: PropTypes.func.isRequired,
+
+  // Redux dispatch function for unblocking movies
+  unblockMovies: PropTypes.func.isRequired,
+};
 
 export default BlockPage;

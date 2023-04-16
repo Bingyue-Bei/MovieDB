@@ -2,6 +2,7 @@ import { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 function MovieDetail({ movie }) {
   const [open, setOpen] = useState(false);
@@ -116,5 +117,14 @@ function MovieDetail({ movie }) {
     </>
   );
 }
+
+MovieDetail.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    release_date: PropTypes.string.isRequired,
+    // add any other required props here
+  }).isRequired,
+};
 
 export default MovieDetail;
