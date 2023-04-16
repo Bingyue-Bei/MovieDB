@@ -26,6 +26,7 @@ function MovieDetail({ movie }) {
                 setClickedMovie(res.data);
               });
             setOpen(true);
+            console.log(clickedMovie);
           }}
         >
           {movie.title}
@@ -113,6 +114,7 @@ function MovieDetail({ movie }) {
       </div>
       <div>
         <p>{movie.release_date}</p>
+        <p style={{"marginLeft":"15px"}}>Vote: {movie.vote_average}</p>
       </div>
     </>
   );
