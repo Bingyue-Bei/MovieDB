@@ -2,118 +2,37 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import {
   fetchMovies,
-  sortByTitle,
-  sortByTitleDesc,
-  sortByVote,
-  sortByVoteDesc,
-  sortByVoteAverage,
-  sortByVoteAverageDesc,
-  sortByReleaseDate,
-  sortByReleaseDateDesc,
-  likedMovies,
-  dislikedMovies,
 } from "../Actions";
 
-import MovieDetail from "./MovieDetail";
+import { MovieList } from "./MovieList";
 import PropTypes from "prop-types";
+import { PageNav } from "./PageNav";
+import { SortButtons } from "./SortButtons";
 
-// Prev, Next Button, Sort Button,
 const Home = function () {
   const dispatch = useDispatch();
 
-  const [titleAscending, setTitleAscending] = useState(false);
-  const [voteAscending, setVoteAscending] = useState(false);
-  const [voteAvgAscending, setVoteAvgAscending] = useState(false);
-  const [dateAscending, setDateAscending] = useState(false);
-
-  //access fetched movies and total page number from store
   const movies = useSelector((state) => state.movies);
   const totalPage = useSelector((state) => state.totalPage);
   const currentPage = useSelector((state) => state.currentPage);
   const [page, setPage] = useState(currentPage);
   const [query, setQuery] = useState("");
-  const posterUrl = "https://image.tmdb.org/t/p/w500";
 
-  const likedList = useSelector(state => state.likedMovies);
-
-  const sortTitle = () => {
-    if (titleAscending) {
-      dispatch(sortByTitleDesc());
-      setTitleAscending(false);
-    } else {
-      dispatch(sortByTitle());
-      setTitleAscending(true);
-    }
-  };
-
-  const sortVote = () => {
-    if (voteAscending) {
-      dispatch(sortByVoteDesc());
-      setVoteAscending(false);
-    } else {
-      dispatch(sortByVote());
-      setVoteAscending(true);
-    }
-  };
-
-  const sortVoteAvg = () => {
-    if (voteAvgAscending) {
-      dispatch(sortByVoteAverageDesc());
-      setVoteAvgAscending(false);
-    } else {
-      dispatch(sortByVoteAverage());
-      setVoteAvgAscending(true);
-    }
-  };
-
-  const sortReleaseDate = () => {
-    if (dateAscending) {
-      dispatch(sortByReleaseDateDesc());
-      setDateAscending(false);
-    } else {
-      dispatch(sortByReleaseDate());
-      setDateAscending(true);
-    }
-  };
+ 
 
   const handleSearch = (query) => {
     dispatch(fetchMovies(page, query));
     setQuery("");
   };
 
-
   useEffect(() => {
     dispatch(fetchMovies(page, query));
   }, [dispatch, query, page]);
 
-  const nextPage = () => {
-    setPage(page + 1);
-  };
-
-  const previousPage = () => {
-    setPage(page - 1);
-  };
-
-  const handleLike = (element) => {
-    const movieIndex = likedList.findIndex(movie => movie.id === element.id);
-    if (movieIndex === -1) {
-      // movie not in liked list, add it
-      dispatch(likedMovies(element));
-    } else {
-      // movie already in liked list, remove it
-      dispatch(dislikedMovies(element));
-    }
-  };
-
   return (
     <div className="home-page">
       <div className="home-page-actions">
-        <div className="sorting-buttons">
-          <button onClick={() => sortTitle()}>Title</button>
-          <button onClick={() => sortVote()}>Vote Count</button>
-          <button onClick={() => sortVoteAvg()}>Vote Average</button>
-          <button onClick={() => sortReleaseDate()}>Release Date</button>
-        </div>
+       <SortButtons />
         <div className="search-box">
           <input
             type="text"
@@ -124,45 +43,16 @@ const Home = function () {
             }}
           />
           <button onClick={handleSearch}>Search</button>
-
         </div>
-        <div className="page-info">
-          {page === 1 ? (
-            <button disabled={true}>No Previous</button>
-          ) : (
-            <button onClick={previousPage}>Previous</button>
-          )}
-          <p>
-            {currentPage} / {totalPage}
-          </p>
-          {page === 37870 ? (
-            <button disabled={true}>No Next</button>
-          ) : (
-            <button onClick={nextPage}>Next</button>
-          )}
-        </div>
+        <PageNav
+          totalPage={totalPage}
+          currentPage={currentPage}
+          page={page}
+          setPage={setPage}
+        />
       </div>
 
-      <div className="movie-list-container">
-        {movies.length
-          ? movies.map((element, index) => {
-              return (
-                <div className="movie-list-card" key={index}>
-                  <img
-                    src={posterUrl + element.poster_path}
-                    alt={"Poster of " + element.title}
-                  ></img>
-                  {/* <p className="movie-list-card__title">{element.title}</p> */}
-                  <MovieDetail movie={element} />
-                  <div className="movie-list-card__action">
-                    <div className="like-icon" onClick={() => handleLike(element)} >{ likedList.findIndex(movie => movie.id === element.id) === -1 ? 'Like' : 'Liked!!!' }</div>
-                    <div className="block-icon">Block</div>
-                  </div>
-                </div>
-              );
-            })
-          : ""}
-      </div>
+      <MovieList movies={movies} />
     </div>
   );
 };
@@ -170,6 +60,5 @@ const Home = function () {
 Home.propTypes = {
   movies: PropTypes.array.isRequired,
 };
-
 
 export default Home;

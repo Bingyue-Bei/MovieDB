@@ -12,7 +12,7 @@ export const SORT_BY_VOTE_AVERAGE_DESC = "SORT_BY_VOTE_AVERAGE_DESC";
 export const SORT_BY_RELEASE_DATE = "SORT_BY_RELEASE_DATE";
 export const SORT_BY_RELEASE_DATE_DESC = "SORT_BY_RELEASE_DATE_DESC";
 
-// add by cchen 20230413 for `like page` ticket
+
 export const LIKED_MOVIES = "LIKED_MOVIES";
 export const DISLIKED_MOVIES = "DISLIKED_MOVIES";
 
@@ -83,20 +83,7 @@ export const dislikedMovies = (movie) => ({
   type: DISLIKED_MOVIES,
   payload: movie,
 });
-/*
-export const fetchMovies =
-  (pageNum = 1) =>
-  (dispatch) =>
-    fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=6ebbb29dce0cec38629a6d732af0b3da&language=en-US&page=${pageNum}`
-    )
-      .then((response) => response.json()) // Extract JSON data from response
-      .then((data) => {
-        dispatch(receiveCurrentPage(data.page));
-        dispatch(receiveTotalPageCount(data.total_pages));
-        dispatch(receiveMovies(data.results));
-      }); // Dispatch action with extracted data
-*/
+
 export const fetchMovies = (page=1, query="") =>{
   let endpoint = `https://api.themoviedb.org/3/movie/popular?api_key=6ebbb29dce0cec38629a6d732af0b3da&language=en-US&page=${page}`;
   if (query !== "") {
@@ -108,5 +95,5 @@ export const fetchMovies = (page=1, query="") =>{
     dispatch(receiveCurrentPage(data.page));
     dispatch(receiveTotalPageCount(data.total_pages));
     dispatch(receiveMovies(data.results));
-  }); // Dispatch action with extracted data
+  });
 }

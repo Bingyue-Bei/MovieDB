@@ -26,7 +26,6 @@ function MovieDetail({ movie }) {
                 setClickedMovie(res.data);
               });
             setOpen(true);
-            console.log(clickedMovie);
           }}
         >
           {movie.title}
@@ -125,7 +124,6 @@ MovieDetail.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     release_date: PropTypes.string.isRequired,
-    // add any other required props here
   }).isRequired,
 };
 

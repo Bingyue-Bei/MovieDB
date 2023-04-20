@@ -1,4 +1,4 @@
-//import { FETCH_MOVIES } from "./constant"
+
 import {
   BLOCK_MOVIE,
   RECEIVE_MOVIES,
@@ -13,7 +13,6 @@ import {
   SORT_BY_VOTE_AVERAGE_DESC,
   SORT_BY_RELEASE_DATE,
   SORT_BY_RELEASE_DATE_DESC,
-  // add by cchen 20230413 for `like page` ticket
   LIKED_MOVIES,
   DISLIKED_MOVIES,
 } from "./Actions";
@@ -132,7 +131,6 @@ const Reducer = (state = initialState, action) => {
         blockMovies: newList,
       };
 
-    // add by cchen 20230413 for `like page` ticket
     case LIKED_MOVIES:
       if (
         state.likedMovies.find(
@@ -149,7 +147,6 @@ const Reducer = (state = initialState, action) => {
       const afterList = state.likedMovies.filter(
         (element) => element.id !== action.payload.id
       );
-      console.log(afterList, 'im in Reducer.js');
       return {
         ...state,
         likedMovies: afterList,
