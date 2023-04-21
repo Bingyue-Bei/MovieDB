@@ -1,10 +1,10 @@
 import MovieDetail from "./MovieDetail";
 import { useDispatch, useSelector } from "react-redux";
 import { likedMovies, dislikedMovies, blockMovies, unblockMovies } from "../Actions";
+import { posterUrl } from "../constant";
 
 export const MovieItem = ({ element, index }) => {
   const dispatch = useDispatch();
-  const posterUrl = "https://image.tmdb.org/t/p/w500";
   const likedList = useSelector((state) => state.likedMovies);
     const blockedList = useSelector((state) => state.blockMovies);
 

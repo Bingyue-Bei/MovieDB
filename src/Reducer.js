@@ -15,7 +15,7 @@ import {
   SORT_BY_RELEASE_DATE_DESC,
   LIKED_MOVIES,
   DISLIKED_MOVIES,
-} from "./Actions";
+} from "./constant";
 
 const initialState = {
   movies: [],

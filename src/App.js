@@ -1,7 +1,7 @@
-import './App.css';
-import Home from './components/Home';
-import LikedPage from './components/LikedPage';
-import BlockPage from './components/BlockPage';
+import './styles/app.css';
+import Home from './containers/Home';
+import LikedPage from "./containers/LikedPage";
+import BlockPage from "./containers/BlockPage";
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { NavBar } from './components/NavBar';

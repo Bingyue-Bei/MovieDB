@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { dislikedMovies } from "../Actions";
-import MovieDetail from "./MovieDetail";
+import MovieDetail from "../components/MovieDetail";
 import PropTypes from "prop-types";
 
 function LikedPage() {

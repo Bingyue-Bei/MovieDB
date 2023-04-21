@@ -3,6 +3,8 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import axios from "axios";
 import PropTypes from "prop-types";
+import { posterUrlOri} from "../constant";
+import "../styles/movie-details.css"
 
 function MovieDetail({ movie }) {
   const [open, setOpen] = useState(false);
@@ -51,14 +53,14 @@ function MovieDetail({ movie }) {
           >
             <img
               className="image-bg"
-              src={`https://image.tmdb.org/t/p/original${clickedMovie.backdrop_path}`}
+              src={posterUrlOri + clickedMovie.backdrop_path}
               alt="background-img"
             />
             <div className="movie-detail">
               <div className="move-detail-item">
                 <img
                   className="movie-detail-poster"
-                  src={`https://image.tmdb.org/t/p/original${clickedMovie.poster_path}`}
+                  src={posterUrlOri + clickedMovie.poster_path}
                   alt="poster"
                 />
               </div>
@@ -89,7 +91,7 @@ function MovieDetail({ movie }) {
                         <></>
                       ) : (
                         <img
-                          src={`https://image.tmdb.org/t/p/original${company.logo_path}`}
+                          src={posterUrlOri + company.logo_path}
                           alt="company-logo"
                           key={index}
                           className="company-img"
@@ -113,7 +115,7 @@ function MovieDetail({ movie }) {
       </div>
       <div>
         <p>{movie.release_date}</p>
-        <p style={{"marginLeft":"15px"}}>Vote: {movie.vote_average}</p>
+        <p style={{ marginLeft: "15px" }}>Vote: {movie.vote_average}</p>
       </div>
     </>
   );

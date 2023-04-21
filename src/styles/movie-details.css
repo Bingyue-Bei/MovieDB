@@ -1,131 +1,3 @@
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: black;
-  color: white;
-}
-
-.nav-bar {
- width: 95%;
-  margin-left: 2.5%;
-  border-bottom: 1px solid rgb(252, 251, 251);
-
-}
-
-.logo {
-  height: 70px;
-  margin-left: 20px;
-  margin-top: 20px;
-}
-
-.nav-text {
-  margin-left: 20px;
-  margin-top: 45px;
-  cursor: pointer;
-  font-size: 20px;
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.poster {
-  height: 300px;
-  width: auto;
-}
-
-.input-container {
-  padding-top: 50px;
-}
-
-.movie-list-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.movie-list-container img {
-  height: 500px;
-  width: max-content;
-  border-radius: 10px;
-}
-
-.movie-list-card__title {
-  padding: 10px;
-  font-size: 1.1em;
-  text-align: center;
-  height: max-content;
-  width: max-content;
-}
-
-.movie-list-card__action {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.like-icon,
-.block-icon {
-  cursor: pointer;
-}
-
-.home-page-actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.sorting-buttons,
-.page-info {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  padding: 10px;
-  width: 95%;
-}
-
-.sorting-buttons button,
-.page-info button {
-  width: 8rem;
-  height: 1.5rem;
-}
-
-.page-info {
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
-}
-
-.movie-list-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 25%;
-  height: max-content;
-  border-radius: 10px;
-  padding: 20px;
-}
-
-#movie-title {
-  cursor: pointer;
-}
-
-.image-bg {
-  opacity: 0.6;
-  width: 771px;
-  height: 476px;
-  margin-top: -16px;
-  margin-left: -32px;
-  border-radius: 3px;
-}
-
 .movie-detail {
   width: 775px;
   height: 480px;
@@ -136,7 +8,7 @@ body {
   display: grid;
   grid-template-columns: auto auto auto;
   padding: 10px;
-  color:black;
+  color: black;
 }
 
 .movie-detail-item {
@@ -147,12 +19,8 @@ body {
 .movie-detail-poster {
   margin-top: 25px;
   width: 250px;
+  height: 350px;
   border: 2px solid black;
-}
-
-#movie-text {
-  width: 400px;
-  margin-top: 25px;
 }
 
 .movie-genre-Action {
@@ -348,15 +216,4 @@ body {
   border: none;
   cursor: pointer;
   margin-top: 20px;
-}
-
-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
-padding: 10px;
-  width: 95%;
-  margin-left: 2.5%;
 }
