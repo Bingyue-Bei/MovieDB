@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { posterUrlOri} from "../constant";
-import "../styles/movie-details.css"
+import "./moviedetail.css"
 
 function MovieDetail({ movie }) {
   const [open, setOpen] = useState(false);

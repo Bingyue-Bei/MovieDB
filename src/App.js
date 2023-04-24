@@ -1,4 +1,4 @@
-import './styles/app.css';
+import './App.css';
 import Home from './containers/Home';
 import LikedPage from "./containers/LikedPage";
 import BlockPage from "./containers/BlockPage";
